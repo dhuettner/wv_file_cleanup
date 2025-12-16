@@ -191,12 +191,17 @@ class CleanupController extends ActionController
      */
     protected function optionsConfig(): void
     {
+        // Get SET parameter from request (TYPO3 v13 compatible)
+        $parsedBody = $this->request->getParsedBody();
+        $queryParams = $this->request->getQueryParams();
+        $setData = $parsedBody['SET'] ?? $queryParams['SET'] ?? [];
+
         $this->moduleSettings = BackendUtility::getModuleData(
             [
                 'displayThumbs' => '',
                 'recursive' => '',
             ],
-            GeneralUtility::_GP('SET'),
+            $setData,
             'file_WvFileCleanupCleanup'
         );
     }
