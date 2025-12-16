@@ -95,8 +95,9 @@ class CleanupController extends ActionController
         $this->getLanguageService()->includeLLFile($fileListResourcePath . 'locallang_mod_file_list.xlf');
         $this->getLanguageService()->includeLLFile('EXT:wv_file_cleanup/Resources/Private/Language/locallang_mod_cleanup.xlf');
 
-        // GPvars
-        $combinedIdentifier = GeneralUtility::_GP('id');
+        // Get id parameter from request (TYPO3 v13 compatible)
+        $queryParams = $this->request->getQueryParams();
+        $combinedIdentifier = $queryParams['id'] ?? null;
 
         try {
             if ($combinedIdentifier) {
