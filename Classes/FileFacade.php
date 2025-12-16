@@ -48,6 +48,11 @@ class FileFacade
     protected $queryBuilder;
 
     /**
+     * @var IconFactory
+     */
+    protected $iconFactory;
+
+    /**
      * LEGACY CODE
      * @var
      */

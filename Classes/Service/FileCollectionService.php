@@ -99,8 +99,8 @@ class FileCollectionService
                     $queryBuilder->createNamedParameter('category', Connection::PARAM_STR)
                 )
             )
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
 
         $result = [];
         foreach ($queryResult as $record) {
@@ -137,8 +137,8 @@ class FileCollectionService
                     )
                 )
             )
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
         return $queryResult;
     }
     /**
@@ -172,8 +172,8 @@ class FileCollectionService
                     )
                 )
             )
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
         return $queryResult;
     }
 }

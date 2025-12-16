@@ -180,7 +180,7 @@ class FileRepository implements SingletonInterface
                     $queryBuilder1->createNamedParameter('sys_file_metadata', Connection::PARAM_STR)
                 )
             )
-            ->execute();
+            ->executeQuery();
         $refIndexCount = (int)$res1->fetchOne();
 
         // sys_file_reference
@@ -194,7 +194,7 @@ class FileRepository implements SingletonInterface
                     $queryBuilder2->createNamedParameter($file->getUid(), Connection::PARAM_INT)
                 ),
             )
-            ->execute();
+            ->executeQuery();
         $fileReferenceCount = (int)$res2->fetchOne();
 
         return max($refIndexCount, $fileReferenceCount);
@@ -209,7 +209,7 @@ class FileRepository implements SingletonInterface
             ->where(
                 $queryBuilder->expr()->eq('uid', (int)$file->getUid())
             )
-            ->execute();
+            ->executeQuery();
         $row = $res->fetch();
 
         return $row ? $row['last_move'] : 0;

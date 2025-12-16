@@ -101,7 +101,13 @@ class CleanupCommand extends Command
             $io->note('DryRun option active');
         }
 
-        [$storageUid, $folderPath] = explode(':', $input->getArgument('folder'), 2);
+        $parts = explode(':', $input->getArgument('folder'), 2);
+        if (count($parts) === 2) {
+            [$storageUid, $folderPath] = $parts;
+        } else {
+            $storageUid = 1;
+            $folderPath = $parts[0];
+        }
 
         // Fallback for when only a path is given
         if (!is_numeric($storageUid)) {
